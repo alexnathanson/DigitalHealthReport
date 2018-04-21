@@ -1,0 +1,21 @@
+{
+	"source" : {
+		"name" : "inthemoment",
+		"title" : "Time Well Spent",
+		"url" : "https://inthemoment.io/tws-results"
+	},
+	"data" : {
+		"Calm" : {
+			"name" : "Calm",
+			"percentHappy" : "99",
+			"dailyMinutes" : "10",
+			"category" : "most happy"
+		}
+		"Google Calendar" : {
+			"name" : "Google Calendar",
+			"percentHappy" : "99",
+			"dailyMinutes" : "3",
+			"category" : "most happy"
+		}
+	}
+}

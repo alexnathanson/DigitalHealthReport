@@ -11,8 +11,17 @@ function tosdr(site){
 	link = 'https://tosdr.org/api/1/service/' + site  + '.json';
 	return link;
 }
+
+function adTech(site){
+	link = ' ' + site + ".json";
+	return link;
+}
+
 testSite = 'facebook';
+
 yourUrl = tosdr(testSite);
 
 var json_obj = JSON.parse(Get(yourUrl));
 console.log(json_obj.pointsData);
+
+yourUrl = adTech(testSite);
