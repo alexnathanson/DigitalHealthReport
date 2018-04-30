@@ -1,5 +1,7 @@
 # DigitalHealthReport
 
+![alt text](https://github.com/alexnathanson/DigitalHealthReport/blob/master/Scorecard.png)
+
 # Addiction and Happiness
 * http://humanetech.com/app-ratings/
 * https://inthemoment.io/tws-results
