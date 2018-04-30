@@ -6,16 +6,16 @@
 * http://humanetech.com/app-ratings/
 * https://inthemoment.io/tws-results
 
-# Ad Network Resources
+# Ad Networks
 * https://adblockplus.org/en/filters
 * https://easylist-downloads.adblockplus.org
 
 # Terms of Service
-* https://tosdr.org/
+* Terms of Service; Didn't Read (API) https://tosdr.org/
 
+# Security and Privacy
+* Have I Been Pwnd (API)
 
-# Available APIs
-* Terms of Service; Didn't Read https://tosdr.org/
-* Built With
-* Who Is
-* Have I Been Pwnd
+# General website info
+* Built With (API)
+* Who Is (API)
