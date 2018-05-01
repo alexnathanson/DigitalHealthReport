@@ -3,21 +3,28 @@
 <html>
 <body>
 
-<p> Digital Health Report Test</p>
+<h3> Digital Health Report </h3>
+    
+<input name="input" type="text" id="submitBox" value=""/>
+<button onclick="runIt()">Search</button>
+      <div>
 
-
+<h4>Overal score:</h4> <p id="overallScore">Not Yet Determined</p>
+    
 <p><strong>Who Is</strong><br>
 <div id="gradeIs">Grade: </div>
-</p>
+
 
 <p><strong>Terms of Service; Didn't Read</strong><br>
 <div id="gradeTOS">Grade: </div>
 <div id="detailsTOS"> </div>
-</p>
+    
+<p><strong>Have I been PWND</strong><br>
+<div id="gradePWND">Grade: </div>
+<p id="detailsPWND"> </p>
 
-<script src="js/tosdrAPI.js"></script>
-<!-- <script src="js/getAPI.js"></script>-->
-
+<script type="text/javascript" src="js/tosdrAPI.js"></script>
+<script type="text/javascript" src="js/dhr.js"></script>
 
 </body>
 </html> 

@@ -157,12 +157,23 @@ function triggerTOSDR(myHostname){
 
 }
 
+function runIt(){
+
+  //clear data
+
+  var newQuery = document.getElementById("submitBox").value;
+
+  console.log("new query: " + newQuery);
+  
+  triggerTOSDR(newQuery);
+  showData(newQuery);
+}
 //------- GLOBAL VARIABLES ------------------------------
 var tosdrServiceList = "json/tosdr_april29.json";
 
 var finalOutput = "";
 
 //replace with input
-var myHostname = 'cnn.com';
+var myHostname = '';
 
-triggerTOSDR(myHostname);
+//triggerTOSDR(myHostname);
