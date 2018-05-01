@@ -1,4 +1,4 @@
-console.log('Test 4.29.4!');
+console.log('Test 4.5.1!');
 
 //-------------FUNCTIONS!!!------------------------------------------------------------------
 
@@ -121,33 +121,46 @@ function checkTOS(host, jsonData){
 
 }
 
-//-----------------STUFF --------------------------------
+function cleanHost(host){
 
-var myHostname = 'cnn.com'
 
-//location of tosdr reference;
-var tosdrServiceList = "json/tosdr_april29.json";
-//var tosdrServiceList = "json/small_april29.json";
+  //remove the prefixes
+  if(host.substring(0, 4) == 'www.'){
+    host = host.substring(4, host.length);
+    console.log("new hostname = " + host);
+  } else if (host.substring(0, 11) == 'http://www.'){
+    //remove http
+    host = host.substring(11, host.length);
+    console.log("new hostname = " + host);
+  } else if (host.substring(0, 12) == 'https://www.'){
+    //remove https
+    host = host.substring(12, host.length);
+    console.log("new hostname = " + host);
+  }
 
-//remove the prefixes
-if(myHostname.substring(0, 4) == 'www.'){
-  myHostname = myHostname.substring(4, myHostname.length);
-  console.log("new hostname = " + myHostname);
-} else if (myHostname.substring(0, 11) == 'http://www.'){
-  //remove http
-  myHostname = myHostname.substring(11, myHostname.length);
-  console.log("new hostname = " + myHostname);
-} else if (myHostname.substring(0, 12) == 'https://www.'){
-  //remove https
-  myHostname = myHostname.substring(12, myHostname.length);
-  console.log("new hostname = " + myHostname);
+  return host;
 }
 
-var tosdrDict = new HttpClient();
-var tosdrDictResp = null;
-tosdrDict.get(tosdrServiceList, formatResponseServiceList);
+function triggerTOSDR(myHostname){
 
-console.log("hostname: " + myHostname);
+  myHostname = cleanHost(myHostname);
 
+  //location of tosdr reference;
+  //var tosdrServiceList = "json/small_april29.json";
+
+
+  var tosdrDict = new HttpClient();
+  var tosdrDictResp = null;
+  tosdrDict.get(tosdrServiceList, formatResponseServiceList);
+
+  console.log("hostname: " + myHostname);
+
+}
+
+//------- GLOBAL VARIABLES ------------------------------
+var tosdrServiceList = "json/tosdr_april29.json";
 
 var finalOutput = "";
+var myHostname = 'cnn.com';
+
+triggerTOSDR(myHostname);
