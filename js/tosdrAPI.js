@@ -1,4 +1,4 @@
-console.log('Test 4.5.1!');
+console.log('Test 5.1.2!');
 
 //-------------FUNCTIONS!!!------------------------------------------------------------------
 
@@ -18,16 +18,17 @@ var HttpClient = function() {
 }
 
 function formatResponseServiceList(someData){
-  //console.log(someData);
+  //console.log("Formatting Response Service List");
   var data = JSON.parse(someData);
   var jObject = new Object(Object.entries(data.TOSDR));
 
   //tosdrDictResp = data;
   //console.log(jObject);
-  checkTOS(myHostname, jObject);
+  checkTOS(cleanedHost, jObject);
 }
 
 function formatResponse(someData){
+  //console.log("Formating Response");
   //var data=JSON.stringify(someData);
   var sData=JSON.parse(someData);
 
@@ -55,6 +56,7 @@ function tosdr(site){
 
 function gradeIt(apiDeets){
   
+  //console.log("Grading TOS");
   //console.log(apiDeets);
   var output = "";
   
@@ -71,6 +73,8 @@ function gradeIt(apiDeets){
 
 function gradeDetails(json_obj){
 
+  //console.log("Getting TOS grade details");
+
   var pLen = json_obj.points.length;
 
   var score = 0.0; //should it be a int?
@@ -84,7 +88,9 @@ function gradeDetails(json_obj){
 
 //filter by date
 function appendIt(letter, domId){
- 
+  
+  //console.log("Appending");
+
   var tD = document.getElementById(domId);
 
   //var newDate = document.createElement("p");
@@ -94,8 +100,10 @@ function appendIt(letter, domId){
 };
 
 function checkTOS(host, jsonData){
- // console.log(jsonData[0][0]);
+ //console.log("Checking TOS");
   
+  //console.log(jsonData);
+
   var tosdrLen = jsonData.length;
 
 //should be set to false
@@ -105,7 +113,7 @@ function checkTOS(host, jsonData){
     for (var urls_ = 0; urls_ < jsonData[jd][1].urls.length; urls_ ++){
       if (host == jsonData[jd][1].urls[urls_]){
         host = jsonData[jd][0];
-        //console.log(host);
+        console.log(host);
         boolTOS = true;
         break;
       }
@@ -123,6 +131,7 @@ function checkTOS(host, jsonData){
 
 function cleanHost(host){
 
+  //console.log("Cleaninghost");
 
   //remove the prefixes
   if(host.substring(0, 4) == 'www.'){
@@ -143,28 +152,50 @@ function cleanHost(host){
 
 function triggerTOSDR(myHostname){
 
-  myHostname = cleanHost(myHostname);
+  cleanedHost = cleanHost(myHostname);
 
   //location of tosdr reference;
   //var tosdrServiceList = "json/small_april29.json";
 
-
-  var tosdrDict = new HttpClient();
-  var tosdrDictResp = null;
   tosdrDict.get(tosdrServiceList, formatResponseServiceList);
 
-  console.log("hostname: " + myHostname);
+  console.log("hostname: " + cleanedHost);
+
+}
+
+function remChild(list){
+  while (list.hasChildNodes()) {   
+      list.removeChild(list.firstChild);
+  }
+}
+
+function clearDOM(){
+
+  var list1 = document.getElementById("gradeTOS");
+    // As long as <ul> has a child node, remove it
+   var list2 = document.getElementById("detailsTOS");
+  // As long as <ul> has a child node, remove it
+   var list3 = document.getElementById("gradePWND");
+  // As long as <ul> has a child node, remove it
+   var list4 = document.getElementById("detailsPWND");
+  // As long as <ul> has a child node, remove it
+
+  remChild(list1);
+  remChild(list2);
+  remChild(list3);
+  remChild(list4);
 
 }
 
 function runIt(){
 
   //clear data
+  clearDOM();
 
-  var newQuery = document.getElementById("submitBox").value;
+  newQuery = document.getElementById("submitBox").value;
 
-  console.log("new query: " + newQuery);
-  
+  //console.log("new query: " + newQuery);
+
   triggerTOSDR(newQuery);
   showData(newQuery);
 }
@@ -174,6 +205,54 @@ var tosdrServiceList = "json/tosdr_april29.json";
 var finalOutput = "";
 
 //replace with input
-var myHostname = '';
+var cleanedHost = '';
 
+var newQuery = document.getElementById("submitBox").value;
 //triggerTOSDR(myHostname);
+
+var tosdrDict = new HttpClient();
+var tosdrDictResp = null;
+
+
+//------Davon------------
+
+//javascript page
+//You've been Pwnd function
+function pwnd(site){
+  link = 'https://haveibeenpwned.com/api/v2/breaches?domain=' + site;
+  return link;
+}
+
+var xhr = new XMLHttpRequest(); 
+
+//testSite = document.getElementById("input").value;
+
+//yourUrl = pwnd(testSite);
+
+
+function showData(newQuery) {
+  // var newQuery = document.getElementById("submitBox").value;
+//    var newQuery = 'https://haveibeenpwned.com/api/v2/breaches?domain=adobe.com'
+    
+    //console.log(newQuery);
+
+    xhr.open('GET',pwnd(newQuery),false);
+
+    xhr.send();
+    
+    console.log(xhr.status);
+    
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        var response = JSON.parse(xhr.responseText);
+        console.log(response);    
+        
+        if(response[0] !== undefined){
+            document.getElementById("detailsPWND").innerHTML = response[0].Description;
+            console.log(response[0].Description);
+        
+        }
+        if(response[0] == undefined){
+            document.getElementById("detailsPWND").innerHTML = "No breach found";
+        }
+  }  
+}

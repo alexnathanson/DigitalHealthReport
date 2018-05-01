@@ -12,8 +12,8 @@ var xhr = new XMLHttpRequest();
 //yourUrl = pwnd(testSite);
 
 
-function showData() {
-   var newQuery = document.getElementById("submitBox").value;
+function showData(newQuery) {
+  // var newQuery = document.getElementById("submitBox").value;
 //    var newQuery = 'https://haveibeenpwned.com/api/v2/breaches?domain=adobe.com'
     
     console.log(newQuery);
