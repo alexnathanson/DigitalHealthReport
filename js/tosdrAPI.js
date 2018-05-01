@@ -161,6 +161,8 @@ function triggerTOSDR(myHostname){
 var tosdrServiceList = "json/tosdr_april29.json";
 
 var finalOutput = "";
+
+//replace with input
 var myHostname = 'cnn.com';
 
 triggerTOSDR(myHostname);
