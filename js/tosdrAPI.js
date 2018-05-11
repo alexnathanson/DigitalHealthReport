@@ -197,7 +197,7 @@ function runIt(){
   //console.log("new query: " + newQuery);
 
   triggerTOSDR(newQuery);
-  showData(newQuery);
+  //showData(newQuery);
 }
 //------- GLOBAL VARIABLES ------------------------------
 var tosdrServiceList = "json/tosdr_april29.json";
@@ -235,6 +235,7 @@ function showData(newQuery) {
 //    var newQuery = 'https://haveibeenpwned.com/api/v2/breaches?domain=adobe.com'
     
     //console.log(newQuery);
+    newQuery = cleanHost(newQuery);
 
     xhr.open('GET',pwnd(newQuery),false);
 
